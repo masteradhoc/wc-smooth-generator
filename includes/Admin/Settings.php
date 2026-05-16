@@ -315,8 +315,12 @@ class Settings {
 		$args = array();
 		
 		if ( ! empty( $_POST['use_date_range'] ) ) {
-			$args['date-start'] = sanitize_text_field( $_POST['start_date'] );
-			$args['date-end'] = sanitize_text_field( $_POST['end_date'] );
+			$args['date-start'] = isset( $_POST['start_date'] )
+				? sanitize_text_field( wp_unslash( $_POST['start_date'] ) )
+				: '';
+			$args['date-end']   = isset( $_POST['end_date'] )
+				? sanitize_text_field( wp_unslash( $_POST['end_date'] ) )
+				: '';
 		}
 
 		if ( ! empty( $_POST['generate_products'] ) && ! empty( $_POST['num_products_to_generate'] ) ) {

@@ -197,7 +197,7 @@ class BatchProcessor implements BatchProcessorInterface {
 		$result = Router::generate_batch( $slug, $amount, $args );
 
 		if ( is_wp_error( $result ) ) {
-			throw new \Exception( $result->get_error_message() );
+			throw new \Exception( esc_html( $result->get_error_message() ) );
 		}
 
 		self::update_current_job( count( $result ) );
